@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs} % 用于表格
+\usepackage{longtable} % 用于长表格
+\usepackage{geometry} % 控制页面边距
+\geometry{a4paper, margin=1in}
+
+\title{Data Process Template}
+\author{Weicong HUANG, stalwarthuang@outlook.com}
+\date{December 2024}
+
+\begin{document}
+
+\maketitle
+
+\section{Data Name}
+\subsection{Data Source}
+\subsection{Documentation Source}
+A brief introduction of the data: including what information the data contains, the sample period, and the number of observations and columns.
+
+\section{Data Explore}
+The goal of this subsection is to explore the raw data so as to get an understanding of the dataset.
+
+\subsection{Data Structure}
+What the data source is about and what is(are) the identifier(s) that uniquely identify each row?
+
+\subsection{Column Meanings}
+What is the meaning of each column? Fill the table below.
+
+\begin{longtable}{lll}
+\toprule
+Column Name & Meaning & Theoretical Value Range \\
+\midrule
+\endhead
+\bottomrule
+\end{longtable}
+
+% 其他子章节按需求添加
+\subsection{Duplicates}
+% 添加具体内容说明
+
+\section{Data Process}
+% 添加具体说明
+
+
+\end{document}

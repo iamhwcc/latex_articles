@@ -1,0 +1,248 @@
+\documentclass{exam}
+\usepackage[GBK]{ctex}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{xcolor} % 加载颜色包
+
+\title{Elastic Search Final Revision}
+\author{Weicong HUANG, stalwarthuang@outlook.com}
+\date{December 2024}
+
+\begin{document}
+\maketitle
+
+\section{Class Test 1}
+
+\begin{questions}
+
+\question
+关于 Elasticsearch 的描述中，不正确的是
+\begin{choices}
+    \choice Elasticsearch 是解决海量数据全文检索的不二之选
+    \choice \textcolor{red}{Elasticsearch 只能为结构化数据提供搜索和分析服务}
+    \choice ES 是一个基于 Java 语言开发的，基于 Lucene 的开源分布式搜索引擎
+    \choice 只要是用到搜索的场景，ES 几乎都可以说是最好的选择
+\end{choices}
+\textit{\textcolor{red}{Elasticsearch 为所有类型的数据提供近乎实时的搜索和分析}}
+
+\question
+ES 的典型应用场景不包括
+\begin{choices}
+    \choice 在线实时日志分析
+    \choice 物联网数据监控
+    \choice \textcolor{red}{事务场景}
+    \choice 文献检索和文献计量
+\end{choices}
+
+\question
+访问 ES 集群服务器的端口地址默认是
+\begin{choices}
+    \choice \textcolor{red}{9200}
+    \choice 9220
+    \choice 9020
+    \choice 9300
+\end{choices}
+
+\question
+ES 集群中，节点之间相互通信的默认端口号是
+\begin{choices}
+    \choice 9200
+    \choice \textcolor{red}{9300}
+    \choice 9100
+    \choice 9230
+\end{choices}
+
+\question
+搜索引擎中的反向索引(倒排索引)是指
+\begin{choices}
+    \choice 通过文章找词
+    \choice 通过文章找文章
+    \choice 通过词找词
+    \choice \textcolor{red}{通过词找文章}
+\end{choices}
+
+\question
+关于 ES 集群中索引和分片的描述，不正确的是
+\begin{choices}
+    \choice 索引是由分片(shards)组成，并且分片可以有副本
+    \choice 分片的种类包括主分片和副本分片
+    \choice 分片可以提高服务的高可用性
+    \choice \textcolor{red}{主分片和其副本分片可以同时存在于同一个节点上}
+\end{choices}
+
+\question
+ES 集群节点的角色不包括
+\begin{choices}
+    \choice 主节点(master node)
+    \choice 数据节点(data node)
+    \choice 预处理节点(ingest node)
+    \choice \textcolor{red}{从节点(slave node)}
+\end{choices}
+
+\question
+关于索引的说法中，不正确的是
+\begin{choices}
+    \choice 索引名称必须用小写字符
+    \choice 索引的主分片数量定义后不能修改
+    \choice 索引的副本分片数量定义后可修改
+    \choice \textcolor{red}{从节点当向索引中添加数据的字段是原先未定义的，数据不可以添加}
+\end{choices}
+\textit{\textcolor{red}{当向索引中添加数据的字段是原先未定义的，数据依然可以被成功添加。ES拥有动态映射机制，会根据数据的内容自动识别对应的字段类型。}}
+
+\question
+关于索引中文档主键的描述，正确的是
+\begin{choices}
+    \choice \textcolor{red}{添加文档数据时如果没有指定主键，则系统会生成一个不重复的字符串作为主键}
+    \choice ES 的索引中的文档，可以没有主键
+    \choice 写入索引数据时，如果文档主键已存在则会报错
+\end{choices}
+
+\question
+关于索引的健康状态的描述，正确的是
+\begin{choices}
+    \choice 蓝色表示所有分片（主、副本）都可用
+    \choice 绿色表示至少有一个副本不可用，但所有主分片都可用
+    \choice 黄色表示至少有一个副本不可用，但所有主分片都可用
+    \choice \textcolor{red}{红色表示至少有一个主分片不可用，数据不完整}
+\end{choices}
+\textit{\textcolor{red}{
+- 绿色：所有分片都可用 \\
+- 黄色：至少有一个副本不可用，但是所有主分片都可用，此时集群能提供完整的读写服务，但是可用性较低。\\
+- 红色：至少有一个主分片不可用，数据不完整。此时集群无法提供完整的读写服务。集群不可用}}
+
+\question
+当一个索引数据量太大时，继续写入可能导致分片数据量过大，查询时会因内存不足引起集群崩溃；为避免所有数据都写入同一个索引，可以使用\_\_\_\_技术。\\
+该技术需要配合索引别名一起使用，可实现把原先写入一个索引的数据自动分发到多个索引中。
+\begin{choices}
+    \choice \textcolor{red}{滚动索引}
+    \choice 索引模板
+    \choice 动态映射
+    \choice 字段复制
+\end{choices}
+
+\question
+文本分析的描述中，错误的是：
+\begin{choices}
+    \choice 文本分析器包含：大于等于零个字符过滤器、一个分词器、大于等于零个分词过滤器
+    \choice 文档入库时，任何 text 类型字段都会进行文本分析
+    \choice 检索已入库文档时，对于查询的字段会进行文本分析
+    \choice \textcolor{red}{文本分析器就是文本分词器}
+\end{choices}
+
+\question
+标准分析器 standard 包含
+\begin{choices}
+    \choice \textcolor{red}{标准分词器和一个小写分词过滤器}
+    \choice 简单分词器和一个小写分词过滤器
+    \choice 只包含标准分词器，没有其他过滤器
+    \choice 标准分词器和一个标点符号去除器
+\end{choices}
+
+\question
+IK 中文分词器的描述中，不正确的是：
+\begin{choices}
+    \choice 分词两种：ik\_smart、ik\_max\_word
+    \choice 全文检索时文本分析使用 ik\_smart 较为常见
+    \choice 索引时文本分析使用 ik\_max\_word 更加合适
+    \choice \textcolor{red}{同一中文句子使用 ik\_smart 分词后得到的词数量一般比ik\_max\_word 分词后得到的词数量多}
+\end{choices}
+
+\question
+查询索引 xx 的映射的命令是：
+\begin{choices}
+    \choice get xx/\_search
+    \choice get xx/map
+    \choice \textcolor{red}{get xx/\_mapping}
+    \choice get xx/mapping
+\end{choices}
+
+\question
+查看集群所有索引的命令是：
+\begin{choices}
+    \choice \textcolor{red}{get \_cat/indices}
+    \choice get cat/indices
+    \choice get all/indices
+    \choice get indices
+\end{choices}
+
+\question
+使用 Kibana 时，浏览器端的默认端口号是：
+\begin{choices}
+    \choice 6501
+    \choice 5600
+    \choice \textcolor{red}{5601}
+    \choice 5061
+\end{choices}
+
+\question 
+\begin{verbatim}
+POST mydata/_search
+{
+  "query": {
+    "match_all": {}
+  },
+  "size": 10,
+  "from": 0
+}
+\end{verbatim}
+关于语句的描述中，错误的是：
+\begin{choices}
+    \choice 索引名称是 mydata
+    \choice \_search 表示查询
+    \choice match\_all 表示查询所有文档
+    \choice \textcolor{red}{size 为 10 表示查询前 10 个文档}
+\end{choices}
+\textit{\textcolor{red}{size表示分页大小, "size":10表示返回10个文档，而并非前10个，结合了"from":0才是返回前10个}}
+
+\question
+\begin{verbatim}
+POST _analyze
+{
+  "analyzer": "ik_smart",
+  "text": "数据科学与大数据专业"
+}
+\end{verbatim}
+字符串 “数据科学与大数据专业” 使用 ik\_smart 分词器得到的分词结果是：
+\begin{choices}
+    \choice 数据, 科学, 与, 大, 专业
+    \choice \textcolor{red}{数据, 科学, 与, 大, 数据, 专业}
+    \choice 数据科学, 大数据, 专业
+    \choice 数据, 科学, 专业
+\end{choices}
+\textit{\textcolor{red}{
+--未设置停用词，所以包含“与”\\
+--大数据可以拆分为“ 大”，“数据”\\
+数据\\
+科学\\
+与\\
+大\\
+数据\\
+专业}}
+
+\question
+\begin{verbatim}
+POST test-3-2-1/_search
+{
+  "query": {
+    "term": {
+      "name.keyword": {
+        "value": "张三"
+      }
+    }
+  }
+}
+\end{verbatim}
+查询语句的描述中，错误的是：
+\begin{choices}
+    \choice term 表示术语查询
+    \choice name.keyword 此处不可以改为 name
+    \choice \textcolor{red}{该语句表示查询姓名为 “张三” 的文档，其中包括 “张三丰” 的文档}
+    \choice 该语句是以一个精准查询，而不是模糊匹配
+\end{choices}
+\textit{\textcolor{red}{term精准查询"张三"，不包括张三丰}}
+
+\end{questions}
+
+\section{Class Test 2}
+
+\end{document}

@@ -471,7 +471,40 @@ kibana的默认web ui端口是
 
 \question beats在数据收集层面上并不进行过于复杂的数据处理，只是将数据简单的组织并上报给上游系统 \hfill \textbf{(T)}
 
-
+\section{Aggregations}
+1. 既计算了总共的sales总和，也计算了每个桶内的sales总和。
+\begin{verbatim}
+POST index/_search
+{
+  "query": {
+    "match_all": {}
+  },
+  "size": 0,
+  "aggs": {
+    "total_sales": {
+      "sum": {
+        "field": "sales"
+      }
+    },
+    "group_by_category": {
+      "terms": {
+        "field": "category",
+        "size": 5,
+        "order": {
+          "total_sales": "desc"
+        }
+      },
+      "aggs": {
+        "total_sales": {
+          "sum": {
+            "field": "sales"
+          }
+        }
+      }
+    }
+  }
+}
+\end{verbatim}
 
 
 

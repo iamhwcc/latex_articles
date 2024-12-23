@@ -506,7 +506,23 @@ POST index/_search
 }
 \end{verbatim}
 
-
+\section{Common commands}
+\begin{enumerate}
+    \item 查看所有索引 \\
+    GET \_cat/indices
+    \item 查看集群健康状况 \\
+    GET \_cat/health
+    \item 查看主节点 \\ 
+    GET \_cat/master
+    \item 查看所有节点 \\ 
+    GET \_cat/nodes
+    \item 查看索引映射 \\
+    GET index\_name/\_mapping
+    \item 查看索引所有数据 \\
+    GET index\_name/\_search
+    \item 检测索引是否存在 \\
+    HEAD index\_name (200: 存在；404: 不存在)
+\end{enumerate}
 
 
 

@@ -1,4 +1,4 @@
-\documentclass{exam}
+\documentclass[]{exam}
 \usepackage[GBK]{ctex}
 \usepackage{graphicx} % Required for inserting images
 \usepackage{amsmath}
@@ -49,11 +49,18 @@
 \begin{document}
 \maketitle
 
+\vspace{-2.5em} % 调整声明与标题之间的间距
+\begin{center}
+\textit
+{
+These two tests are class tests for the course 《Big Data Processing Techniques - Elasticsearch》at SCAU. They are only for personal research and study exchanges!
+}
+\end{center}
+\vspace{0.8em} 
+
 \section{Class Test 1}
 
-
 \begin{questions}
-
 \question
 关于 Elasticsearch 的描述中, 不正确的是
 \begin{choices}
@@ -283,5 +290,203 @@ POST test-3-2-1/_search
 \end{questions}
 
 \section{Class Test 2}
+
+\begin{questions}
+    
+\question
+关于ES特点的描述, 错误的是: 
+\begin{choices}
+    \choice 基于Java语言开发
+    \choice 基于Lucene框架
+    \choice 原生支持分布式
+    \choice \textcolor{red}{只支持TB级数据量}
+\end{choices}
+\textit{\textcolor{red}{可支持PB级数据量}}
+
+\question
+ES集群的节点有多种类型，其中不包括：
+\begin{choices}
+    \choice master node
+    \choice data node
+    \choice \textcolor{red}{input node}
+    \choice coordinating node
+\end{choices}
+\textit{\textcolor{red}{数据接入节点: ingest node}}
+
+\question
+关于分片的策略，错误的描述是：
+\begin{choices}
+    \choice 主分片和其副本分片不能同时存在于同一个节点上
+    \choice 每个分片都是一个Lucene实例
+    \choice ES会自动在nodes上做分片均衡shard rebalance
+    \choice \textcolor{red}{完全相同的副本可以同时存在于同一个节点上}
+\end{choices}
+\textit{\textcolor{red}{完全相同的副本“不能”不能同时存在于同一个节点上}}
+
+\question
+修改一个索引文档内容时，使用的REST方法是
+\begin{choices}
+    \choice \textcolor{red}{POST}
+    \choice {UPDATE}
+    \choice {REPLACE}
+    \choice {UPSERT}
+\end{choices}
+\textit{\textcolor{red}{REST方法包括：PUT,GET,POST,DELETE,HEAD。}}
+
+\question
+向索引输入一条文档数据时，其REST方法是
+\begin{choices}
+    \choice GET
+    \choice \textcolor{red}{POST}
+    \choice {DELETE}
+    \choice PUTS
+\end{choices}
+
+\question
+索引数据批量录入时的指令方法是
+\begin{choices}
+    \choice BAT
+    \choice BATS
+    \choice \textcolor{red}{BULK}
+    \choice {INPUT}
+\end{choices}
+
+\question
+定义一个字段的类型是不经过文本分析处理的关键字类型是
+\begin{choices}
+    \choice text类型
+    \choice key类型
+    \choice keytext类型
+    \choice \textcolor{red}{keyword类型}
+\end{choices}
+
+\question
+关于索引路由的描述中，错误的是
+\begin{choices}
+    \choice \textcolor{red}{路由的计算公式与索引主分片数量无关}
+    \choice 路由的计算公式与索引主分片数量有关
+    \choice 路由计算公式中的\_routing，默认是文档的\_id值
+    \choice 路由的本质就是计算新数据属于哪个分片
+\end{choices}
+\textit{\textcolor{red}{
+路由计算公式：$shard\_num = \text{hash}(\_routing) \% num\_primary\_shards$ \\
+其中 \textit{\_routing} 与主键有关，\textit{num\_primary\_shards} 表示主分片的数量。
+}}
+
+\question
+在dev-tools中，查询ES集群所有索引的命令正确的是
+\begin{choices}
+    \choice GET \_cat/allindex
+    \choice \textcolor{red}{GET \_cat/indices}
+    \choice GET \_cat/index
+    \choice GET \_cat/allindices
+\end{choices}
+
+\question
+搜索数据时，术语查询是指\_\_\_查询
+\begin{choices}
+    \choice match查询
+    \choice match\_all
+    \choice \textcolor{red}{term}
+    \choice regexp
+\end{choices}
+
+\question
+kibana的默认web ui端口是
+\begin{choices}
+    \choice 6500
+    \choice 6501
+    \choice 5600
+    \choice \textcolor{red}{5601}
+\end{choices}
+
+\question
+在管道聚集中，如果要定义一个平均管道聚集，则其关键词是
+\begin{choices}
+    \choice sum\_bucket
+    \choice min\_bucket
+    \choice max\_bucket
+    \choice \textcolor{red}{avg\_bucket}
+\end{choices}
+
+\question
+在父子关联索引数据设计方法中，关于join字段方法的描述中，错误的是
+\begin{choices}
+    \choice 父子关系数据写入同一个索引
+    \choice \textcolor{red}{父子关系数据写入不同的两个索引}
+    \choice 父文档和子文档分开输入
+    \choice 每个子文档都是独立的文档
+\end{choices}
+
+\question
+索引的健康状态显示黄色，描述错误的是
+\begin{choices}
+    \choice \textcolor{red}{有主分片没有分配，索引不可用}
+    \choice 主分片都已分配，但有副本分片没分配，索引可用
+    \choice 所有主分片都已分配，索引可用
+    \choice 黄色表示索引可用。当所有主分片和副本分片都分配后，索引状态变为绿色
+\end{choices}
+\textit{\textcolor{red}{黄色表示，亚健康，集群可用；\\
+→所有主分片都已分配，有副本分片没有分配}}
+
+\question
+获取ES集群健康情况的操作指令是
+\begin{choices}
+    \choice GET \_cat/index
+    \choice GET \_cat/nodes
+    \choice \textcolor{red}{GET \_cat/health}
+    \choice GET \_cat/master
+\end{choices}
+
+\question
+如果需要监控主机性能指标数据，则在Beats采集家族中选用的工具是
+\begin{choices}
+    \choice filebeat
+    \choice \textcolor{red}{metricbeat}
+    \choice packetbeat
+    \choice Heartbeat
+\end{choices}
+
+
+\question 判断一个索引test\_3是否存在时, 使用语句HEAD test-3, 如果返回结果是200, 则表示索引存在 \hfill \textbf{(T)}
+
+\question 新建、索引和删除请求都是“写”操作， 必须在主分片上面完成之后才能被复制到相关的副本分片 \hfill \textbf{(T)}
+
+\question 根据文档\_id检索文档时，可以从主分片或者从其它任意副本分片检索文档； \hfill \textbf{(T)}
+
+\question 使用标准分析器处理文本时，不进行字母的小写转换 \hfill \textbf{(F)} \\
+\textit{\textcolor{red}{标准分析器standard analyzer会根据Unicode文本分割算法定义的单词边界将文本划分为术语。它删除了大多数标点符号并将单词转为小写，并支持删除停用词}}
+
+\question 为某个字段指定ignore\_malformed为false表示：即使该字段输入数据类型不匹配，不影响其他字段的输入 \hfill \textbf{(F)} \\
+\textit{\textcolor{red}{"ignore\_malformed":true 才能保证输入数据类型不匹配时不影响其他字段输入}}
+
+\question 向索引中写入一个文档包含事先未定义的字段内容时，写入操作不成功；\hfill \textbf{(F)} \\
+\textit{\textcolor{red}{ES有动态映射功能}}
+
+\question 管道聚集与桶聚集无关 \hfill \textbf{(F)} \\
+\textit{\textcolor{red}{管道聚集必须有一个输入才能正常工作，这个输入是桶聚集生成的结果，故管道聚集与桶聚集有关(管道聚集第一步就是桶聚集)}}
+
+\question 采用Logstash采集数据时，不添加额外的信息，数据原封不动输出下游 \hfill \textbf{(F)} \\
+\textit{\textcolor{red}{即使不添加额外信息，Logstash也会自动添加一些元数据信息，比如@timestamp @version等等}}
+
+\question beats在数据收集层面上并不进行过于复杂的数据处理，只是将数据简单的组织并上报给上游系统 \hfill \textbf{(T)}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{questions}
 
 \end{document}
